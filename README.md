@@ -1,7 +1,7 @@
-npx create-react-app [myApp] --template typescript
-npm i --save-dev @types/styled-components
-npm i styled-components
-npm i recoil
+npx create-react-app [myApp] --template typescript.
+npm i --save-dev @types/styled-components.
+npm i styled-components.
+npm i recoil.
 
 # Getting Started with Create React App
 
