@@ -14,21 +14,26 @@ function ToDo({ text, category, id }: IToDo) {
         } = event;
         setToDos((oldToDos) => {
             const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
-            const oldToDo = oldToDos[targetIndex];
-            const newToDo = { text, id, category: "name" };
-            return oldToDos;
+            
+            const newToDo = { text, id, category: name as any };
+            return [
+                ...oldToDos.slice(0, targetIndex),
+                newToDo,
+                ...oldToDos.slice(targetIndex + 1),
+            ];
         });
     } */
     // 이벤트에 인자를 받아 변경
     const onClick = (newCategory: IToDo["category"]) => {
-        console.log("i wanna to ", newCategory);
         setToDos((oldToDos) => {
             const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
-            const oldToDo = oldToDos[targetIndex];
             const newToDo = { text, id, category: newCategory };
-            console.log("old : ", oldToDo);
-            console.log("new : ", newToDo);
-            return oldToDos;
+
+            return [
+                ...oldToDos.slice(0, targetIndex),
+                newToDo,
+                ...oldToDos.slice(targetIndex + 1),
+            ];
         });
     };
 
