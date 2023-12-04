@@ -1,7 +1,7 @@
 // To Do를 입력받는 컴포넌트
 import { useForm } from "react-hook-form";
-import { useSetRecoilState } from "recoil";
-import { toDoState } from "./atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { categoryState, toDoState } from "./atoms";
 
 interface IForm {
     toDo: string;
@@ -9,6 +9,8 @@ interface IForm {
 
 function CreateToDo() {
     const setToDos = useSetRecoilState(toDoState);
+    const category = useRecoilValue(categoryState);
+
     const {
         register,
         handleSubmit,
@@ -17,10 +19,10 @@ function CreateToDo() {
     } = useForm<IForm>();
 
     const handleValid = ({ toDo }: IForm) => {
-        console.log("add : ", toDo);
         setToDos((oldToDos) => [
             ...oldToDos,
-            { text: toDo, id: Date.now(), category: "To_Do" },
+            // [text, id, category] 추가
+            { text: toDo, id: Date.now(), category },
         ]);
         // submit하고 input을 빈칸으로 세팅
         setValue("toDo", "");
@@ -35,7 +37,7 @@ function CreateToDo() {
                 placeholder="Write a To Do"
             />
             <button>Add</button>
-            <span>{errors?.toDo?.message}</span>
+            <p>{errors?.toDo?.message}</p>
         </form>
     );
 }

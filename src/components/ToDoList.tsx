@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { toDoState } from "./atoms";
+import { toDoSelector } from "./atoms";
+import CategorySelctor from "./CategorySelector";
 import CreateToDo from "./CreateToDo";
 import ToDo from "./ToDo";
 
@@ -13,20 +13,21 @@ const ToDoListDiv = styled.div`
 
 function ToDoList() {
     // useRecoilState()은 useRecoilValue와 useSetRecoilState 2개를 동시에 사용할 때 쓴다
-    const toDos = useRecoilValue(toDoState);
-    console.log(toDos);
+    const toDos = useRecoilValue(toDoSelector);
+
     return (
         <ToDoListDiv>
             <div>
                 <h1>To Do List</h1>
                 <hr />
+
+                <CategorySelctor />
                 <CreateToDo />
-                <ul>
-                    {toDos.map((toDo) => (
-                        // {...toDo} == text={toDo.text} category={toDo.category} id={toDo.id}
-                        <ToDo key={toDo.id} {...toDo} />
-                    ))}
-                </ul>
+                <hr />
+
+                {toDos?.map((toDo) => (
+                    <ToDo key={toDo.id} {...toDo} />
+                ))}
             </div>
         </ToDoListDiv>
     );
