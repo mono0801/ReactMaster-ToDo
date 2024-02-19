@@ -1,7 +1,8 @@
 npx create-react-app [myApp] --template typescript\
 npm i --save-dev @types/styled-components\
 npm i styled-components\
-npm i recoil
+npm i recoil\
+npm install recoil-persist - Save in Local Storage
 
 # Getting Started with Create React App
 
