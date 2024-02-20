@@ -15,6 +15,10 @@ const InputContainer = styled.div`
     margin-bottom: 5px;
 `;
 
+const Input = styled.input`
+    margin-right: 5px;
+`;
+
 const ErrorText = styled.div`
     display: flex;
     justify-content: center;
@@ -50,13 +54,13 @@ function CreateToDo() {
         <Wrapper>
             <form onSubmit={handleSubmit(handleValid)}>
                 <InputContainer>
-                    <input
+                    <Input
                         {...register("toDo", {
                             required: "Please write To Do",
                         })}
                         placeholder="Write a To Do"
                     />
-                    <button>Add</button>
+                    <button>➕</button>
                 </InputContainer>
                 <ErrorText>
                     <p>{errors?.toDo?.message}</p>

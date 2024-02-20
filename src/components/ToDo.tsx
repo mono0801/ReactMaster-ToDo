@@ -12,7 +12,7 @@ const TodoList = styled.ul``;
 
 const TodoContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     margin-bottom: 10px;
 `;
 
@@ -20,6 +20,7 @@ const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 5px;
 `;
 
 const Button = styled.button`
@@ -30,7 +31,7 @@ const TodoText = styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 10px;
+    margin-bottom: 5px;
 `;
 
 function ToDo({ text, category, id }: IToDo) {
@@ -82,13 +83,20 @@ function ToDo({ text, category, id }: IToDo) {
         <Wrapper>
             <TodoList>
                 <TodoContainer>
-                    <ButtonContainer>
-                        <Button onClick={deleteToDo}>❌</Button>
-                    </ButtonContainer>
                     <TodoText>{text}</TodoText>
                     <ButtonContainer>
-                        {/* !== "To_Do"과  <Button>To Do</Button>이 모두 참이여야 출력됨 */}
-                        {category !== Categories.To_Do && (
+                        <Button onClick={deleteToDo}>❌</Button>
+                        {Categories.map((props) => (
+                            <Button
+                                key={props}
+                                onClick={() => onClick(props)}
+                                disabled={category === props}
+                            >
+                                {props}
+                            </Button>
+                        ))}
+
+                        {/* {category !== Categories.To_Do && (
                             // arg를 넘겨주는 이벤트 핸들러의 경우 () => Function(arg)을 써야한다
                             // 속성에 name=""을 추가해서 마우스 이벤트 시 해당 버튼의 이름을 넘겨주는 방법도 있다
                             <Button onClick={() => onClick(Categories.To_Do)}>
@@ -104,7 +112,7 @@ function ToDo({ text, category, id }: IToDo) {
                             <Button onClick={() => onClick(Categories.Done)}>
                                 Done
                             </Button>
-                        )}
+                        )} */}
                     </ButtonContainer>
                 </TodoContainer>
             </TodoList>
