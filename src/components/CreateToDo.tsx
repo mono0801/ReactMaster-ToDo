@@ -58,7 +58,7 @@ function CreateToDo() {
                         {...register("toDo", {
                             required: "Please write To Do",
                         })}
-                        placeholder="Write a To Do"
+                        placeholder={`Write a To Do in ${category}`}
                     />
                     <button>➕</button>
                 </InputContainer>

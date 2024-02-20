@@ -1,9 +1,8 @@
 // 카테고리를 고르는 컴포넌트
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { styled } from "styled-components";
-import { Categories, categoriesState, categoryState, toDoState } from "./atoms";
+import { categoriesState, categoryState } from "./atoms";
 
 const Wrapper = styled.div`
     margin-left: 5px;
@@ -90,8 +89,9 @@ function CategorySelctor() {
                 // category 추가
                 category,
             ]);
-            console.log(categories);
+            alert("카테고리가 추가되었습니다.");
         }
+        console.log(categories);
         // submit하고 input을 빈칸으로 세팅
         setValue("category", "");
     };
@@ -100,19 +100,19 @@ function CategorySelctor() {
         setCategory(category);
     };
 
-    const deleteCategory = () => {
-        if (window.confirm("삭제 하시겠습니까?")) {
-            setCategories((oldCategory) => {
-                const newCategory = oldCategory.filter(
-                    (current) => current !== category
-                );
-                setCategory(categories[0]);
-                return newCategory;
-            });
-        } else {
-            return null;
-        }
-    };
+    // const deleteCategory = () => {
+    //     if (window.confirm("삭제 하시겠습니까?")) {
+    //         setCategories((oldCategory) => {
+    //             const newCategory = oldCategory.filter(
+    //                 (current) => current !== category
+    //             );
+    //             setCategory(categories[0]);
+    //             return newCategory;
+    //         });
+    //     } else {
+    //         return null;
+    //     }
+    // };
 
     return (
         <Wrapper>
@@ -135,23 +135,24 @@ function CategorySelctor() {
             <hr />
 
             <SelectContainer>
-                {Categories.map((category) => (
-                    <Container>
+                {categories?.map((category) => (
+                    <Container key={category}>
                         <SelectDiv
                             key={category}
                             onClick={() => onClick(category)}
                         >
                             {category}
-                            <Button
+                            {/* <Button
+                                key={category}
                                 onClick={deleteCategory}
                                 disabled={
-                                    category === Categories[0] ||
-                                    category === Categories[1] ||
-                                    category === Categories[2]
+                                    category === categories[0] ||
+                                    category === categories[1] ||
+                                    category === categories[2]
                                 }
                             >
                                 ❌
-                            </Button>
+                            </Button> */}
                         </SelectDiv>
                     </Container>
                 ))}

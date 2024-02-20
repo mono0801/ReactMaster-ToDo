@@ -1,8 +1,8 @@
 // To Do 리스트에 저장된 To DO를 출력하는 컴포넌트
 import React from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { Categories, IToDo, toDoState } from "./atoms";
+import { categoriesState, IToDo, toDoState } from "./atoms";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -36,6 +36,7 @@ const TodoText = styled.span`
 
 function ToDo({ text, category, id }: IToDo) {
     const setToDos = useSetRecoilState(toDoState);
+    const categories = useRecoilValue<string[]>(categoriesState); // 모든 카테고리
 
     // ToDo의 category를 변경하는 이벤트 핸들러
     /* 클릭한 해당 버튼의 이름을 받아 category를 변경하는 이벤트 핸들러
@@ -86,7 +87,7 @@ function ToDo({ text, category, id }: IToDo) {
                     <TodoText>{text}</TodoText>
                     <ButtonContainer>
                         <Button onClick={deleteToDo}>❌</Button>
-                        {Categories.map((props) => (
+                        {categories.map((props) => (
                             <Button
                                 key={props}
                                 onClick={() => onClick(props)}

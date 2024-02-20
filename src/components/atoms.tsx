@@ -8,7 +8,7 @@ import { recoilPersist } from "recoil-persist";
 //     "Done" = "Done",
 // }
 
-export let Categories = ["To Do", "Doing", "Done"];
+let defaultCategories = ["To Do", "Doing", "Done"];
 
 export interface IToDo {
     text: string;
@@ -24,7 +24,7 @@ const { persistAtom } = recoilPersist();
  */
 export const categoryState = atom({
     key: "category",
-    default: Categories[0],
+    default: defaultCategories[0],
 });
 
 /**
@@ -32,7 +32,7 @@ export const categoryState = atom({
  */
 export const categoriesState = atom<string[]>({
     key: "categories",
-    default: Categories,
+    default: defaultCategories,
     effects_UNSTABLE: [persistAtom],
 });
 
