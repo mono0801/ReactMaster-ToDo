@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/ReactMaster-ToDo/static/js/main.e5788e73.js",
+    "main.js": "/ReactMaster-ToDo/static/js/main.7535f96c.js",
     "index.html": "/ReactMaster-ToDo/index.html",
-    "main.e5788e73.js.map": "/ReactMaster-ToDo/static/js/main.e5788e73.js.map"
+    "main.7535f96c.js.map": "/ReactMaster-ToDo/static/js/main.7535f96c.js.map"
   },
   "entrypoints": [
-    "static/js/main.e5788e73.js"
+    "static/js/main.7535f96c.js"
   ]
 }
