@@ -1,5 +1,4 @@
 // To Do 리스트에 저장된 To DO를 출력하는 컴포넌트
-import React from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { categoriesState, IToDo, toDoState } from "./atoms";
@@ -96,24 +95,6 @@ function ToDo({ text, category, id }: IToDo) {
                                 {props}
                             </Button>
                         ))}
-
-                        {/* {category !== Categories.To_Do && (
-                            // arg를 넘겨주는 이벤트 핸들러의 경우 () => Function(arg)을 써야한다
-                            // 속성에 name=""을 추가해서 마우스 이벤트 시 해당 버튼의 이름을 넘겨주는 방법도 있다
-                            <Button onClick={() => onClick(Categories.To_Do)}>
-                                To Do
-                            </Button>
-                        )}
-                        {category !== Categories.Doing && (
-                            <Button onClick={() => onClick(Categories.Doing)}>
-                                Doing
-                            </Button>
-                        )}
-                        {category !== Categories.Done && (
-                            <Button onClick={() => onClick(Categories.Done)}>
-                                Done
-                            </Button>
-                        )} */}
                     </ButtonContainer>
                 </TodoContainer>
             </TodoList>

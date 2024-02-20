@@ -1,6 +1,6 @@
 // 카테고리를 고르는 컴포넌트
 import { useForm } from "react-hook-form";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { styled } from "styled-components";
 import { categoriesState, categoryState } from "./atoms";
 
@@ -42,26 +42,31 @@ const Container = styled.div`
 `;
 
 const SelectContainer = styled.div`
+    margin-top: 20px;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 5px;
+    gap: 10px;
 `;
 
 const SelectDiv = styled.div`
     background-color: whitesmoke;
-    border-radius: 7px;
-    padding: 5px;
+    border-radius: 10px;
+    padding: 7px;
     color: black;
-    width: 60%;
+    font-weight: bolder;
+    width: 50%;
     height: 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     cursor: pointer;
-`;
 
-const Button = styled.button``;
+    &:hover {
+        border: 2px solid #9c88ff;
+        color: royalblue;
+    }
+`;
 
 interface IForm {
     category: string;
@@ -75,7 +80,7 @@ function CategorySelctor() {
         formState: { errors },
     } = useForm<IForm>();
 
-    const [category, setCategory] = useRecoilState(categoryState); // 현재 선택한 카테고리
+    const setCategory = useSetRecoilState(categoryState); // 현재 선택한 카테고리
     const [categories, setCategories] =
         useRecoilState<string[]>(categoriesState); // 모든 카테고리
 
@@ -91,7 +96,6 @@ function CategorySelctor() {
             ]);
             alert("카테고리가 추가되었습니다.");
         }
-        console.log(categories);
         // submit하고 input을 빈칸으로 세팅
         setValue("category", "");
     };
@@ -99,20 +103,6 @@ function CategorySelctor() {
     const onClick = (category: string) => {
         setCategory(category);
     };
-
-    // const deleteCategory = () => {
-    //     if (window.confirm("삭제 하시겠습니까?")) {
-    //         setCategories((oldCategory) => {
-    //             const newCategory = oldCategory.filter(
-    //                 (current) => current !== category
-    //             );
-    //             setCategory(categories[0]);
-    //             return newCategory;
-    //         });
-    //     } else {
-    //         return null;
-    //     }
-    // };
 
     return (
         <Wrapper>
@@ -142,17 +132,6 @@ function CategorySelctor() {
                             onClick={() => onClick(category)}
                         >
                             {category}
-                            {/* <Button
-                                key={category}
-                                onClick={deleteCategory}
-                                disabled={
-                                    category === categories[0] ||
-                                    category === categories[1] ||
-                                    category === categories[2]
-                                }
-                            >
-                                ❌
-                            </Button> */}
                         </SelectDiv>
                     </Container>
                 ))}

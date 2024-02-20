@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { categoryState, toDoSelector } from "./atoms";
 import CategorySelctor from "./CategorySelector";
